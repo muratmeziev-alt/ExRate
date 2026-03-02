@@ -31,15 +31,15 @@ const formatAmount = (amount: number) => amount.toLocaleString("ru-RU");
 export default function Home() {
   return (
     <AppLayout>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-5">
         {/* Top row: 2 cards */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-5">
           {/* Касса Card */}
           <div className="h-full flex flex-col rounded-xl border border-gray-200 bg-white p-5">
             {/* Header */}
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F0F2F7]">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F0F2F7]">
                   <svg className="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                   </svg>
@@ -92,11 +92,11 @@ export default function Home() {
               {/* Bottom stats */}
               <div className="mt-4 flex items-end justify-between border-t border-gray-100 pt-4">
                 <div>
-                  <div className="text-sm text-gray-400">Свободно RUB</div>
+                  <div className="mb-2 text-sm text-gray-400">Свободно RUB</div>
                   <div className="text-[20px] font-medium text-black-1">13 927 056 RUB</div>
                 </div>
                 <div className="text-left">
-                  <div className="text-sm text-gray-400">Прибыль (сегодня)</div>
+                  <div className="mb-2 text-sm text-gray-400">Прибыль (сегодня)</div>
                   <div className="text-xl font-medium text-green-1">600 778 RUB</div>
                 </div>
               </div>
@@ -108,13 +108,13 @@ export default function Home() {
             {/* Header */}
             <div className="mb-[40px] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F0F2F7]">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F0F2F7]">
                   <svg className="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
                   </svg>
                 </div>
                 <span className="text-base font-medium text-black-1">Карты</span>
-                <span className="text-sm text-red-1">1 низкий баланс</span>
+                <span className="text-sm text-red-1 opacity-50">1 низкий баланс</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="flex items-center rounded-lg border border-gray-200 bg-[#F5F7F9]">
@@ -179,34 +179,20 @@ export default function Home() {
           {/* Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F0F2F7]">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F0F2F7]">
                 <svg className="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                 </svg>
               </div>
               <span className="text-base font-medium text-black-1">Сделки</span>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center rounded-lg border border-gray-200 bg-[#F5F7F9]">
-                <button className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                  </svg>
-                </button>
-                <button className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                  </svg>
-                </button>
-              </div>
-              <button className="text-sm text-blue-2 hover:text-[#1735A2] transition-colors">
-                Показать все
-              </button>
-            </div>
+            <button className="text-sm text-blue-2 hover:text-[#1735A2] transition-colors">
+              Показать все
+            </button>
           </div>
 
           {/* Tabs */}
-          <div className="mt-[30px] flex gap-6">
+          <div className="mt-[20px] flex gap-6">
             <button className="relative pb-[5px] text-sm font-medium text-blue-2">
               Последние
               <span className="absolute bottom-0 left-0 right-0 h-px bg-blue-2 rounded-full" />
