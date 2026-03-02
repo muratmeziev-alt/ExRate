@@ -1,0 +1,10 @@
+Project: ExRate (fintech CRM dashboard)
+
+UI rules (must follow):
+- Background: #EBECF0
+- Cards: white, 12px radius, 1px light border, subtle shadow
+- Spacing: 24px page padding; 16px inside cards; 12px gaps
+- Typography: section titles semibold; key numbers bold; secondary text muted
+- Reusable components: Sidebar, Topbar, Card, Tabs, TableRow
+- No backend yet. Use mock data only.
+- Keep consistent with the provided ExRate design.
