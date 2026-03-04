@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface NavItem {
   id: string;
   label: string;
+  href: string;
   icon: React.ReactNode;
 }
 
@@ -22,6 +24,7 @@ const navItems: NavItem[] = [
   {
     id: "home",
     label: "Главная",
+    href: "/",
     icon: (
       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
@@ -31,6 +34,7 @@ const navItems: NavItem[] = [
   {
     id: "cash",
     label: "Касса",
+    href: "/cash",
     icon: (
       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
@@ -40,6 +44,7 @@ const navItems: NavItem[] = [
   {
     id: "deals",
     label: "Сделки",
+    href: "/deals",
     icon: (
       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
@@ -49,6 +54,7 @@ const navItems: NavItem[] = [
   {
     id: "cards",
     label: "Карты",
+    href: "/cards",
     icon: (
       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
@@ -58,6 +64,7 @@ const navItems: NavItem[] = [
   {
     id: "clients",
     label: "Клиенты",
+    href: "/clients",
     icon: (
       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
@@ -66,29 +73,19 @@ const navItems: NavItem[] = [
   },
 ];
 
-interface SidebarProps {
-  activeItem?: string;
-  onNavigate?: (id: string) => void;
-}
-
-export default function Sidebar({ activeItem = "home", onNavigate }: SidebarProps) {
-  const [active, setActive] = useState(activeItem);
-
-  const handleClick = (id: string) => {
-    setActive(id);
-    onNavigate?.(id);
-  };
+export default function Sidebar() {
+  const pathname = usePathname();
 
   return (
     <aside className="flex h-full w-[220px] shrink-0 flex-col overflow-y-auto border-r border-gray-200 bg-[#FBFBFB]">
       <nav className="flex h-fit flex-wrap px-3 pb-4 pt-[20px]">
         <ul className="w-full space-y-1">
           {navItems.map((item) => {
-            const isActive = active === item.id;
+            const isActive = item.href === "/" ? pathname === "/" : (pathname === item.href || pathname.startsWith(item.href + "/"));
             return (
               <li key={item.id}>
-                <button
-                  onClick={() => handleClick(item.id)}
+                <Link
+                  href={item.href}
                   className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors ${
                     isActive
                       ? "bg-[#F0F2F7] font-semibold text-black-1"
@@ -99,7 +96,7 @@ export default function Sidebar({ activeItem = "home", onNavigate }: SidebarProp
                     {item.icon}
                   </span>
                   {item.label}
-                </button>
+                </Link>
               </li>
             );
           })}
