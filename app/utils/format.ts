@@ -1,5 +1,9 @@
 export const formatAmount = (amount: number) => amount.toLocaleString("ru-RU");
 
+/** Extracts base currency from strings like "USDT (TRC20)" → "USDT" */
+export const getBaseCurrency = (str: string): string =>
+  str.trim().replace(/\s*\([^)]*\)$/, "").trim() || str;
+
 /** Normalizes date/time to DD.MM HH:mm for consistent display. */
 export const formatDateTime = (value: string | undefined): string => {
   if (!value) return "—";

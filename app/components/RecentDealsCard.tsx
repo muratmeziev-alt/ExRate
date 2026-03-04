@@ -44,7 +44,7 @@ export default function RecentDealsCard({ deals }: RecentDealsCardProps) {
         </div>
 
         <div className="flex flex-col gap-5">
-          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] gap-16 px-5 text-sm text-black-1/50">
+          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] gap-16 pl-5 pr-1 text-sm text-black-1/50">
             <span>Сделка</span>
             <span>Получили</span>
             <span>Отдали</span>

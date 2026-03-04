@@ -1,6 +1,6 @@
 import LinkButton from "./LinkButton";
 import { IconChevronRight } from "./icons";
-import { formatAmount, formatDateTime } from "../utils/format";
+import { formatAmount, formatDateTime, getBaseCurrency } from "../utils/format";
 
 export interface DealRowData {
   id: number;
@@ -38,7 +38,7 @@ function getCardStyles(status: DealRowData["status"]) {
 
 export default function DealRow({ deal }: DealRowProps) {
   return (
-    <div className={`flex flex-col gap-[48px] rounded-xl border p-5 ${getCardStyles(deal.status)}`}>
+    <div className={`flex flex-col gap-[48px] rounded-xl border pl-5 pr-1 pt-5 pb-5 ${getCardStyles(deal.status)}`}>
       {/* Row 1: Deal number + status, received + sent + profit */}
       <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] items-center gap-16">
         <div className="flex flex-col gap-2">
@@ -79,10 +79,10 @@ export default function DealRow({ deal }: DealRowProps) {
         </button>
       </div>
 
-      {/* Row 2: Details with "дата" headline */}
+      {/* Row 2: Details with "Дата" headline */}
       <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] items-start gap-16">
         <div className="flex flex-col gap-1">
-          <span className="text-sm text-black-1/50">дата</span>
+          <span className="text-sm text-black-1/50">Дата</span>
           <span className="text-base text-black-1/80">{formatDateTime(deal.date ?? deal.completedDate)}</span>
         </div>
 
@@ -98,16 +98,13 @@ export default function DealRow({ deal }: DealRowProps) {
         <div className="flex min-w-0 flex-col gap-1 text-left">
           {(deal.rateLabel ?? deal.rateValue) && (() => {
             const rateVal = deal.rateValue ?? "";
-            const numMatch = rateVal.match(/^([\d.]+)\s+(.+)$/);
+            const numMatch = rateVal.match(/^([\d.]+)/);
             const rateNum = numMatch ? numMatch[1] : rateVal;
-            const rateCurrency = numMatch ? numMatch[2] : "";
+            const rateLabel = `Курс ${deal.receivedCurrency} → ${getBaseCurrency(deal.sentCurrency)}`;
             return (
               <>
-                <span className="text-sm text-black-1/50">{deal.rateLabel ?? "Курс"}</span>
-                <span className="text-base tabular-nums whitespace-nowrap">
-                  <span className="text-black-1">{rateNum}</span>
-                  {rateCurrency && <span className="text-black-1/50"> {rateCurrency}</span>}
-                </span>
+                <span className="text-sm text-black-1/50">{rateLabel}</span>
+                <span className="text-base tabular-nums whitespace-nowrap text-black-1">{rateNum}</span>
               </>
             );
           })()}
