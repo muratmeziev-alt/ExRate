@@ -1,6 +1,6 @@
 import AppLayout from "./components/AppLayout";
 import CashCard from "./components/CashCard";
-import CardsCard from "./components/CardsCard";
+import RatesCard from "./components/RatesCard";
 import DealsCard from "./components/DealsCard";
 
 const primaryCurrencies = [
@@ -13,13 +13,6 @@ const secondaryCurrencies = [
   { currency: "USDT", amount: 23023 },
   { currency: "BTC", amount: 0.00473453, decimals: 8 },
   { currency: "GBP", amount: 13034 },
-];
-
-const mockCardsData = [
-  { cardNumber: "2008 1234 1234 0123", bank: "Тинькофф", expiry: "25.10.2025", balance: 4000, currency: "RUB", isLowBalance: true },
-  { cardNumber: "2008 1234 1234 0124", bank: "Сбербанк", expiry: "25.10.2025", balance: 1902038, currency: "RUB", isLowBalance: false },
-  { cardNumber: "2008 1234 1234 0125", bank: "Альфа Банк", expiry: "25.10.2025", balance: 8232, currency: "RUB", isLowBalance: false },
-  { cardNumber: "2008 1234 1234 0126", bank: "Тинькофф", expiry: "25.10.2025", balance: 8000, currency: "RUB", isLowBalance: false },
 ];
 
 const mockDealsData = [
@@ -39,11 +32,7 @@ export default function Home() {
             freeRub="13 927 056 RUB"
             profitToday="600 778 RUB"
           />
-          <CardsCard
-            cards={mockCardsData}
-            totalCount={28}
-            lowBalanceCount={1}
-          />
+          <RatesCard />
         </div>
 
         <DealsCard deals={mockDealsData} />

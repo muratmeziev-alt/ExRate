@@ -55,6 +55,18 @@ export const IconFilter = ({ className = "h-4 w-4" }: { className?: string }) =>
   </svg>
 );
 
+export const IconRates = ({ className = "h-4 w-4" }: { className?: string }) => (
+  <svg className={iconClass(className)} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5m0 13.5L12 16.5m0 0V3" />
+  </svg>
+);
+
+export const IconSwap = ({ className = "h-4 w-4" }: { className?: string }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+  </svg>
+);
+
 export const IconTrendUp = ({ className = "h-3 w-3" }: { className?: string }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 011.414-1.414l2.25-2.25a2.25 2.25 0 013.182 0l1.107 1.107M2.25 18l-1.586-1.586a2.25 2.25 0 000-3.182L9 4.5" />
